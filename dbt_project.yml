@@ -2,11 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-<<<<<<< HEAD
 name: 'snow_dbt'
-=======
-name: 'my_new_project'
->>>>>>> e2eeb21011682151a997a8017a6a5dec0f367b7e
 version: '1.0.0'
 config-version: 2
 
@@ -40,7 +36,6 @@ models:
     # Applies to all files under models/example/
     example:
       materialized: view
-<<<<<<< HEAD
     app:
       +materialized: view
       +schema:  app
@@ -55,6 +50,7 @@ models:
     edw:
       +materialized: table
       +schema:  edw
+      +incremental_strategy: "insert_overwrite"
       +database: |
         {%- if target.name == "default" -%} dbt_shyam
         {%- elif target.name == "dev" -%} dbt_dev
@@ -76,18 +72,10 @@ models:
 
     example:
       +materialized: view
-      +schema:  stg
-      +database: |
-        {%- if target.name == "default" -%} dbt_shyam
-        {%- elif target.name == "dev" -%} dbt_dev
-        {%- elif target.name == "qa" -%} dbt_qa
-        {%- elif target.name == "prd" -%} dbt_prd
-        {%- else -%} invalid_target_name_please_check
-        {%- endif -%}
     
     source:
       +materialized: view
-      +schema:  stg
+      +schema:  src
       +database: |
         {%- if target.name == "default" -%} dbt_shyam
         {%- elif target.name == "dev" -%} dbt_dev
@@ -117,5 +105,3 @@ snapshots:
     {%- elif target.name == "prd" -%} dbt_prd
     {%- else -%} invalid_target_name_please_check
     {%- endif -%}
-=======
->>>>>>> e2eeb21011682151a997a8017a6a5dec0f367b7e
